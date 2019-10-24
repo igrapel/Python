@@ -8,25 +8,7 @@ import matplotlib.pyplot as plt
 
 import random
 
-"""
-randomList=[]
-for x in range(12000):
-    randInt=random.randint(1,10)
-    randomList.append(randInt)
-    
-counts = []
-for x in range(10):
-    countDig = randomList.count(x)
-    counts.append(countDig)
-     
-objects = ('0','1', '2', '3', '4', '5', '6', '7', '8', '9')
-y_pos = np.arange(len(objects))
-plt.bar(y_pos, counts, align='center', alpha=0.5)
-plt.xticks(y_pos, objects)
-plt.ylabel('Counts')
-plt.title('Digits')
-plt.show()
-"""
+
 def getnumber():
     while True:
         number = input("Give me a digit: ")
@@ -57,7 +39,7 @@ test = input("Ask the students? ")
 if(test=="no"):
     
     for x in range(num_Questions):
-        randInt=random.randint(1,10)
+        randInt=random.randint(0,9)
         studentList.append(randInt)
     
     Student_counts=[]
@@ -89,12 +71,12 @@ opacity = 0.8
 rects1 = plt.bar(index, Random_counts, bar_width,
 alpha=opacity,
 color='b',
-label='Random')
+label='ر')
 
 rects2 = plt.bar(index + bar_width,Student_counts , bar_width,
 alpha=opacity,
 color='g',
-label='Students')
+label='ط')
 
 plt.xlabel('Digit')
 plt.ylabel('Count')
