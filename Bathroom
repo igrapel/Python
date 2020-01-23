@@ -1,0 +1,29 @@
+# Start with loading all necessary libraries
+import numpy as np
+import pandas as pd
+import os
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+
+import matplotlib.pyplot as plt
+
+os.chdir("C:\\Users\\micha\\Desktop\\Genetics_jobs\\MiamiDadeSchools\\2019-2020")
+
+d = pd.read_csv('bathroom.csv') 
+
+#print(d['First'].value_counts())
+
+names = d.loc[:, 'First']
+names_list = names.tolist()
+
+
+stringList = (" ").join(names_list)
+print(stringList)
+
+wordcloud = WordCloud(width = 1000, height = 500).generate(stringList)
+plt.figure(figsize=(15,8))
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.savefig("C:\\Users\\micha\Desktop\\CompSci\\br.png", format="png")
+plt.show()
+plt.close()
