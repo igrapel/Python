@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov 28 19:01:15 2020
+
+@author: ilan
+"""
+#import os
+import re
+
+#for root, dirs, files in os.walk("."):
+ #   for filename in files:
+  #      print(filename)
+  
+  
+f = open("text.txt", "r")
+text = f.read()
+f.close()
+print(text)
+
+# A sample regular expression to find digits.  
+regex = '\d+'             
+    
+match = re.findall(regex, text)
+
+for i in range(0, len(match)): 
+    match[i] = int(match[i]) 
+
+print(sum(match))
