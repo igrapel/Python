@@ -1,0 +1,53 @@
+import pandas as pd
+import os
+import seaborn as sns
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+
+my_directory = r'C:\Users\ilang\Desktop\Tutoring\Lynde'
+os.chdir(my_directory)
+file_name = "Student_Data.xlsx"
+def read_file(fn):
+    # Use a breakpoint in the code line below to debug your script.
+
+    excel_file = pd.read_excel(fn)
+
+
+    stats = excel_file['Q3_Final'].agg(['median', 'mean', 'std', 'min', 'max']).to_frame().T
+    print(stats)
+    print(excel_file)
+    ax = sns.histplot(data=excel_file, x="Q3_Final", hue="Period", multiple="stack", binwidth=4)
+    ax.set(xlabel="Test Scores (40 max)")
+
+    median = stats["median"][0]
+    plt.axvline(median, color="b")
+    print(ax.get_ylim())
+    ax.text(median-2, ax.get_ylim()[1]*.85, 'Median\nTest Taker', ha="right", color="blue", va="center",
+            fontweight="bold", fontsize=12)
+    ax.annotate('', xy=(median -2, ax.get_ylim()[1]*.85), xytext=(median, ax.get_ylim()[1]*.85),
+              arrowprops=dict(facecolor="blue", arrowstyle="<-", lw=1.6))
+
+
+    mean = stats['mean'][0]
+    std = stats['std'][0]
+    stat_string = "\n".join((r'$\mu=%.2f$' % (mean,),
+                            r'$\sigma=%.2f$' % (std,)))
+    txt_box = dict(boxstyle="round", facecolor="wheat", alpha=.5)
+    ax.text(.21, .85, stat_string, transform=ax.transAxes, fontsize=14,
+            verticalalignment = "top", horizontalalignment="right", bbox=txt_box)
+    plt.suptitle("Test Data")
+
+    plt.show()
+
+
+
+
+
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+
+    read_file(file_name)
+
